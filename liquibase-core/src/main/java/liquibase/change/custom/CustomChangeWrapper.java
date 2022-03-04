@@ -173,6 +173,10 @@ public class CustomChangeWrapper extends AbstractChange {
             }
         } catch (CustomChangeException e) {
             throw new UnexpectedLiquibaseException(e);
+        } finally {
+            if (customChange instanceof CustomTaskChange) {
+                ((CustomTaskChange) customChange).cleanUp();
+            }
         }
 
         if (statements == null) {
@@ -202,6 +206,10 @@ public class CustomChangeWrapper extends AbstractChange {
             }
         } catch (CustomChangeException e) {
             throw new UnexpectedLiquibaseException(e);
+        } finally {
+            if (customChange instanceof CustomTaskRollback) {
+                ((CustomTaskRollback) customChange).cleanUp();
+            }
         }
 
         if (statements == null) {

@@ -21,4 +21,9 @@ public interface CustomTaskChange extends CustomChange {
      * @throws liquibase.exception.CustomChangeException an exception occurs while processing this change
      */
     public void execute(Database database) throws CustomChangeException;
+
+    /**
+     * Gets called after execution of the custom change. Use this to clean up any properties or variables.
+     */
+    public void cleanUp();
 }
